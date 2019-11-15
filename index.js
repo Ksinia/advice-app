@@ -3,34 +3,39 @@ function getRandomAdvice() {
         .then(response => response.json()) // convert response to json
         .then(async myJson => { // display data in the browser
             const adviceText = myJson.slip.advice
-            document.getElementById("advice").innerHTML = adviceText
-            const filtered = await keywords(adviceText)
-            const keywordsDiv = document.getElementById("keywords")
-            filtered.forEach(word => {
-                const btn = document.createElement("button")
-                btn.innerHTML = word
-                btn.onclick = async function () {
-                    myJson = await searchK(word)
-                    const qty = myJson.slips.length
-                    const rand = Math.floor(Math.random() * qty)
-                    document.getElementById('advice').innerHTML = myJson.slips[rand].advice
-                }
-                keywordsDiv.appendChild(btn)
-            })
+            await redrawAdvice(adviceText)
         })
+}
+
+async function redrawAdvice(advice) {
+    document.getElementById("advice").innerHTML = advice
+    const filtered = await keywords(advice)
+    const keywordsDiv = document.getElementById("keywords")
+    keywordsDiv.innerHTML = ''
+    filtered.forEach(word => {
+        const btn = document.createElement("button")
+        btn.innerHTML = word
+        btn.onclick = async function () {
+            myJson = await searchK(word)
+            const qty = myJson.slips.length
+            const rand = Math.floor(Math.random() * qty)
+            const new_advice = myJson.slips[rand].advice
+            document.getElementById('advice').innerHTML = new_advice
+            await redrawAdvice(new_advice)
+        }
+        keywordsDiv.appendChild(btn)
+    })
 }
 
 async function searchAdvice1() {
     const keyword = document.getElementById('keyword').value
-    // console.log(keyword)
     const myJson = await searchK(keyword)
     console.log("myJson:", myJson)
     const qty = myJson.slips.length
-    // console.log(qty)
     const rand = Math.floor(Math.random() * qty)
-    // console.log(rand)
-    document.getElementById("advice").innerHTML =
-        myJson.slips[rand].advice
+    const new_advice = myJson.slips[rand].advice
+    document.getElementById("advice").innerHTML = new_advice
+    await redrawAdvice(new_advice)
 }
 
 async function searchK(keyword) {
