@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+    <title>Ksenia's advice app</title>
+</head>
+
+<body>
+    <main>
+        <h3>Ksenia's advice app</h3>
+        <section id="advices">
+            <p id="advice"></p>
+            <div id="keywords"></div>
+        </section>
+        <section id="buttons">
+            <button onclick="getRandomAdvice()">Get another advice</button>
+            <form onsubmit="searchAdvice1(); return false">
+                <div class="formSection">
+                    <label for="keyword">Word to search:</label>
+                    <input type="text" id="keyword">
+                </div>
+                <div class="button">
+                    <button type="default">Search</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>

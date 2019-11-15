@@ -1,0 +1,46 @@
+img {
+    max-height: 100px;
+    display: block;
+    margin: auto;
+}
+
+
+body {
+    background: lightgrey;
+    padding: 10px;
+    text-align: center;
+    font-family: Verdana;
+}
+#advices {
+    background: white;
+    border-radius: 5px;
+    margin: 5px auto;
+    max-width: 95%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    min-height: 60%;
+    color: #293d3d;
+}
+/* #buttons {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+} */
+footer {
+    color: lightgray;
+}
+
+
+h3 {
+    color: whitesmoke;
+}
+button {
+    margin-top: 1rem;
+    border-radius: 5px;
+
+}
+input {
+    border-radius: 5px;
+}
